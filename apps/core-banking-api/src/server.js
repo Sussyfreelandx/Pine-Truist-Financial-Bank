@@ -64,7 +64,17 @@ const sessions = new SessionService({
   refreshTtlSeconds: config.jwt.refreshTtlSeconds,
 });
 
-const publish = createPublisher(config.redis.url);
+const redisUrl = config.redis?.url?.trim?.() ? config.redis.url : '';
+const redisEnabled = Boolean(redisUrl);
+
+let publish = async () => {};
+let stopRelay = () => {};
+
+if (redisEnabled) {
+  publish = createPublisher(redisUrl);
+} else {
+  logger.warn('REDIS_URL is not configured; Redis-dependent features are disabled');
+}
 
 const app = express();
 app.disable('x-powered-by');
@@ -88,16 +98,21 @@ healthRoutes(app, {
     await query('SELECT 1');
   },
   redis: async () => {
-    await getRedisConnection(config.redis.url).ping();
+    if (!redisEnabled) return;
+    await getRedisConnection(redisUrl).ping();
   },
 });
 
 // Global IP rate limit.
-app.use('/api', globalIpLimiter(config.redis.url));
+if (redisEnabled) {
+  app.use('/api', globalIpLimiter(redisUrl));
+}
 
 // Auth router with login-specific limiter on /login.
 const authRouter = buildAuthRouter({ signAccess, sessions, config, logger, publish, verifyJwt });
-app.use('/api/v1/auth/login', loginLimiter(config.redis.url));
+if (redisEnabled) {
+  app.use('/api/v1/auth/login', loginLimiter(redisUrl));
+}
 app.use('/api/v1/auth', authRouter);
 
 // Authenticated zone.
@@ -109,8 +124,7 @@ app.use('/api/v1/transactions', auth, buildTransactionsRouter());
 app.use(
   '/api/v1/transfers',
   auth,
-  transferLimiter(config.redis.url),
-  pinAttemptLimiter(config.redis.url),
+  ...(redisEnabled ? [transferLimiter(redisUrl), pinAttemptLimiter(redisUrl)] : []),
   buildTransfersRouter({ publish, kekB64: config.encryption.kekB64 }),
 );
 app.use(
@@ -133,11 +147,13 @@ app.use(notFoundHandler());
 app.use(errorHandler(logger));
 
 // Start outbox relay (transactional event publisher).
-const stopRelay = startOutboxRelay({
-  publish: (topic, payload) => publish(topic, payload),
-  intervalMs: 500,
-  logger,
-});
+if (redisEnabled) {
+  stopRelay = startOutboxRelay({
+    publish: (topic, payload) => publish(topic, payload),
+    intervalMs: 500,
+    logger,
+  });
+}
 
 const server = app.listen(config.port, () => {
   logger.info({ port: config.port }, 'core-banking-api listening');
@@ -154,6 +170,4 @@ async function gracefulShutdown(signal) {
   setTimeout(() => process.exit(1), 15_000).unref();
 }
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
-process.on('SIGINT', () => gracefulShutdown('SIGINT'));
-
-void pool;
+process.on('SIGINT', () => gracefulShutdown('SIGINT
