@@ -170,4 +170,6 @@ async function gracefulShutdown(signal) {
   setTimeout(() => process.exit(1), 15_000).unref();
 }
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
-process.on('SIGINT', () => gracefulShutdown('SIGINT
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+void pool;
