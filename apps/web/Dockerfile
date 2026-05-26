@@ -32,11 +32,11 @@ RUN addgroup -S pine && adduser -S pine -G pine
 
 WORKDIR /app
 
-# Only copy the built dist, config, and the minimal server manifest
-COPY --from=builder /app/apps/web/dist            ./apps/web/dist
-COPY --from=builder /app/apps/web/package.json    ./apps/web/package.json
-COPY --from=builder /app/apps/web/vite.config.js  ./apps/web/vite.config.js
-COPY --from=builder /app/node_modules             ./node_modules
+# Only copy the built dist and the minimal server manifest
+COPY --from=builder /app/apps/web/dist       ./apps/web/dist
+COPY --from=builder /app/apps/web/package.json ./apps/web/package.json
+COPY --from=builder /app/apps/web/vite.config.js ./apps/web/vite.config.js
+COPY --from=builder /app/node_modules        ./node_modules
 COPY package.json ./
 
 USER pine
