@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { BrandLogo } from '../components/Brand.jsx';
 
 /* ─── Icon Components ──────────────────────────────────────────────── */
-
 function EasyTransfersIcon({ className = 'w-12 h-12' }) {
   return (
     <svg className={className} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +88,6 @@ function TrendIcon({ className = 'w-6 h-6' }) {
     </svg>
   );
 }
-
 function LockIcon({ className = 'w-6 h-6' }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,11 +140,10 @@ const stats = [
 ];
 
 /* ─── Landing Page ──────────────────────────────────────────────────── */
-
 export function Landing() {
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans overflow-hidden">
-      {/* ── Header ─────────────────────────────────────────────────── */}
+      {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <BrandLogo variant="dark" />
@@ -180,19 +177,15 @@ export function Landing() {
           </div>
         </div>
       </header>
-
-      {/* ── Hero Section ───────────────────────────────────────────── */}
+      {/* Hero */}
       <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        {/* Background gradient elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
-          <div className="absolute top-40 left-10 w-72 h-72 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" style={{ animationDelay: '2s' }} />
-          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '4s' }} />
+          <div className="absolute top-20 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob" />
+          <div className="absolute top-40 left-10 w-72 h-72 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000" />
+          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
         </div>
-
         <div className="mx-auto max-w-7xl relative">
           <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-            {/* Left column - Text */}
             <div className="flex flex-col justify-center">
               <div className="mb-6">
                 <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold tracking-widest">
@@ -211,16 +204,16 @@ export function Landing() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/register"
-                  className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 text-sm"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105"
                 >
                   Open Account
-                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </Link>
                 <Link
                   to="/login"
-                  className="inline-flex items-center justify-center px-8 py-3 rounded-lg border-2 border-gray-300 text-gray-900 font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 text-sm"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-gray-300 text-gray-900 font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all duration-300"
                 >
                   Sign In
                 </Link>
@@ -234,13 +227,11 @@ export function Landing() {
                 ))}
               </div>
             </div>
-
-            {/* Right column - Visual */}
             <div className="relative flex justify-center">
               <div className="relative w-full max-w-sm">
-                {/* Bank card illustration */}
+                {/* Card illustration with no account balance, smaller action buttons */}
                 <svg
-                  viewBox="0 0 400 280"
+                  viewBox="0 0 400 480"
                   className="w-full drop-shadow-2xl"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -249,63 +240,72 @@ export function Landing() {
                       <stop offset="0%" stopColor="#0ea5e9" />
                       <stop offset="100%" stopColor="#06b6d4" />
                     </linearGradient>
+                    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#10b981" />
+                      <stop offset="100%" stopColor="#06b6d4" />
+                    </linearGradient>
                     <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
                       <feDropShadow dx="0" dy="10" stdDeviation="20" floodOpacity="0.15" />
                     </filter>
                   </defs>
-
                   {/* Main card */}
-                  <rect x="30" y="20" width="340" height="240" rx="24" fill="url(#cardGradient)" filter="url(#shadow)" />
-
+                  <rect x="30" y="40" width="340" height="380" rx="28" fill="url(#cardGradient)" filter="url(#shadow)" />
                   {/* Card gloss effect */}
-                  <rect x="30" y="20" width="340" height="120" rx="24" fill="white" opacity="0.1" />
-
+                  <rect x="30" y="40" width="340" height="190" rx="28" fill="white" opacity="0.1" />
                   {/* Card chip */}
-                  <rect x="50" y="50" width="55" height="35" rx="4" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
-                  <circle cx="59" cy="58" r="2.5" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="68" cy="58" r="2.5" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="77" cy="58" r="2.5" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="59" cy="70" r="2.5" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="68" cy="70" r="2.5" fill="rgba(255,255,255,0.5)" />
-
+                  <rect x="50" y="80" width="60" height="40" rx="4" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+                  <circle cx="60" cy="90" r="3" fill="rgba(255,255,255,0.5)" />
+                  <circle cx="70" cy="90" r="3" fill="rgba(255,255,255,0.5)" />
+                  <circle cx="80" cy="90" r="3" fill="rgba(255,255,255,0.5)" />
+                  <circle cx="60" cy="105" r="3" fill="rgba(255,255,255,0.5)" />
+                  <circle cx="70" cy="105" r="3" fill="rgba(255,255,255,0.5)" />
                   {/* Cardholder name area */}
-                  <text x="50" y="120" fontSize="10" fill="rgba(255,255,255,0.6)" fontWeight="500">
+                  <text x="50" y="150" fontSize="11" fill="rgba(255,255,255,0.6)" fontWeight="500">
                     CARDHOLDER
                   </text>
-                  <rect x="50" y="128" width="160" height="10" rx="3" fill="rgba(255,255,255,0.2)" />
-
+                  <rect x="50" y="160" width="180" height="12" rx="4" fill="rgba(255,255,255,0.2)" />
                   {/* Card number */}
-                  <text x="50" y="165" fontSize="24" fill="white" fontWeight="bold" letterSpacing="3">
-                    •••• •••• •••• 5829
+                  <text x="50" y="200" fontSize="28" fill="white" fontWeight="bold" letterSpacing="4">
+                    ••••  ••••  ••••  5829
                   </text>
-
-                  {/* Expiry */}
+                  {/* Expiry and CVV */}
                   <g>
-                    <text x="50" y="200" fontSize="9" fill="rgba(255,255,255,0.7)" fontWeight="500">
+                    <text x="50" y="245" fontSize="10" fill="rgba(255,255,255,0.7)" fontWeight="500">
                       VALID THRU
                     </text>
-                    <rect x="50" y="205" width="45" height="12" rx="3" fill="rgba(255,255,255,0.15)" />
-                    <text x="57" y="214" fontSize="10" fill="white" fontWeight="bold">
+                    <rect x="50" y="250" width="50" height="14" rx="3" fill="rgba(255,255,255,0.15)" />
+                    <text x="58" y="261" fontSize="11" fill="white" fontWeight="bold">
                       12/26
                     </text>
                   </g>
-
-                  {/* CVV area */}
-                  <rect x="305" y="205" width="55" height="12" rx="3" fill="rgba(255,255,255,0.15)" />
-                  <text x="315" y="214" fontSize="8" fill="rgba(255,255,255,0.7)" fontWeight="500">
-                    ••• CVV
-                  </text>
-
-                  {/* Visa/Mastercard logo area */}
-                  <circle cx="340" cy="60" r="20" fill="rgba(255,255,255,0.15)" />
+                  {/* Divider */}
+                  <rect x="50" y="275" width="300" height="2" fill="rgba(255,255,255,0.2)" />
+                  {/* Smaller action icons - e.g. mini buttons */}
+                  <g>
+                    <rect x="60" y="300" width="60" height="22" rx="6" fill="rgba(255,255,255,0.15)" />
+                    <text x="75" y="316" fontSize="11" fill="white" fontWeight="bold">
+                      Income
+                    </text>
+                  </g>
+                  <g>
+                    <rect x="145" y="300" width="60" height="22" rx="6" fill="rgba(255,255,255,0.15)" />
+                    <text x="160" y="316" fontSize="11" fill="white" fontWeight="bold">
+                      Spending
+                    </text>
+                  </g>
+                  <g>
+                    <rect x="230" y="300" width="60" height="22" rx="6" fill="rgba(255,255,255,0.15)" />
+                    <text x="245" y="316" fontSize="11" fill="white" fontWeight="bold">
+                      Savings
+                    </text>
+                  </g>
                 </svg>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ── Features Section ───────────────────────────────────────── */}
+      {/* Features */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
@@ -319,7 +319,6 @@ export function Landing() {
               Powerful tools designed for modern banking, all in one secure platform.
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {serviceCards.map((card) => {
               const Icon = card.icon;
@@ -348,8 +347,7 @@ export function Landing() {
           </div>
         </div>
       </section>
-
-      {/* ── Security Section ───────────────────────────────────────── */}
+      {/* Security */}
       <section id="security" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="mx-auto max-w-7xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -393,7 +391,6 @@ export function Landing() {
                 </div>
               </div>
             </div>
-
             <div className="grid gap-6">
               {securityFeatures.map((feature) => {
                 const FeatureIcon = feature.icon;
@@ -418,8 +415,7 @@ export function Landing() {
           </div>
         </div>
       </section>
-
-      {/* ── Stats Section ───────────────────────────────────────────── */}
+      {/* Stats */}
       <section id="stats" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-cyan-600">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
@@ -428,7 +424,6 @@ export function Landing() {
             </h2>
             <p className="text-xl text-blue-100">Join our growing community of smart savers</p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {stats.map((stat, idx) => (
               <div key={idx} className="text-center">
@@ -437,22 +432,20 @@ export function Landing() {
               </div>
             ))}
           </div>
-
           <div className="mt-16 text-center">
             <Link
               to="/register"
-              className="inline-flex items-center px-8 py-3 rounded-lg bg-white text-blue-600 font-bold hover:bg-blue-50 transition-all duration-300 shadow-lg text-sm"
+              className="inline-flex items-center px-8 py-4 rounded-xl bg-white text-blue-600 font-bold hover:bg-blue-50 transition-all duration-300 shadow-lg"
             >
               Start Your Journey Today
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
           </div>
         </div>
       </section>
-
-      {/* ── CTA Section ────────────────────────────────────────────── */}
+      {/* CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -464,24 +457,23 @@ export function Landing() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/register"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 text-sm"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
             >
               Create Free Account
             </Link>
             <Link
               to="/login"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-lg border-2 border-gray-300 text-gray-900 font-bold hover:border-gray-400 transition-all duration-300 text-sm"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-gray-300 text-gray-900 font-bold hover:border-gray-400 transition-all duration-300"
             >
               Sign In
             </Link>
           </div>
         </div>
       </section>
-
-      {/* ── Footer ─────────────────────────────────────────────────── */}
+      {/* Footer (no social section) */}
       <footer className="bg-gray-900 text-gray-400 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
             <div>
               <h3 className="font-bold text-white mb-4">Product</h3>
               <ul className="space-y-3">
@@ -509,21 +501,16 @@ export function Landing() {
                 <li><a href="#" className="hover:text-white transition-colors">License</a></li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-bold text-white mb-4">Support</h3>
-              <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-              </ul>
-            </div>
           </div>
-
           <div className="border-t border-gray-800 pt-8">
-            <p className="text-sm text-gray-500 text-center">
-              © {new Date().getFullYear()} Pine Truist Finance Bank. All rights reserved.
-            </p>
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <p className="text-sm text-gray-500">
+                © {new Date().getFullYear()} Pine Truist Finance Bank. All rights reserved.
+              </p>
+              <div className="flex items-center gap-6 mt-4 md:mt-0 text-sm">
+                <span className="text-gray-500">Secure Banking Since 2020</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
