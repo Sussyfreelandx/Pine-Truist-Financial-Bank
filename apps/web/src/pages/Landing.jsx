@@ -1,518 +1,258 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { BrandLogo } from '../components/Brand.jsx';
 
-/* ─── Icon Components ──────────────────────────────────────────────── */
-function EasyTransfersIcon({ className = 'w-12 h-12' }) {
-  return (
-    <svg className={className} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="48" height="48" rx="12" fill="#0ea5e9" />
-      <path
-        d="M14 20h14m0 0l-4-4m4 4l-4 4M34 28H20m0 0l4 4m-4-4l4-4"
-        stroke="white"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function SecureBankingIcon({ className = 'w-12 h-12' }) {
-  return (
-    <svg className={className} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="48" height="48" rx="12" fill="#06b6d4" />
-      <path
-        d="M24 12l-10 5v7c0 6.5 4.2 12.6 10 14 5.8-1.4 10-7.5 10-14v-7l-10-5z"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-      />
-      <path
-        d="M20 24l3 3 5-6"
-        stroke="white"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function SupportIcon({ className = 'w-12 h-12' }) {
-  return (
-    <svg className={className} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="48" height="48" rx="12" fill="#8b5cf6" />
-      <path d="M16 28v-4a8 8 0 1116 0v4" stroke="white" strokeWidth="2" strokeLinecap="round" />
-      <rect x="12" y="26" width="4" height="8" rx="2" fill="white" />
-      <rect x="32" y="26" width="4" height="8" rx="2" fill="white" />
-      <path d="M32 34c0 3-3 4-6 4h-2" stroke="white" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function GreenCheckIcon({ className = 'w-6 h-6' }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="10" fill="#10b981" />
-      <path
-        d="M8 12l3 3 5-6"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ShieldIcon({ className = 'w-6 h-6' }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M12 1l-8 4v7c0 6 8 11 8 11s8-5 8-11V5l-8-4z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function TrendIcon({ className = 'w-6 h-6' }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <polyline points="17 6 23 6 23 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-function LockIcon({ className = 'w-6 h-6' }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 const serviceCards = [
   {
-    title: 'Smart Checking',
-    desc: 'Real-time balance updates, instant transfers, and intelligent spending insights at your fingertips.',
-    icon: EasyTransfersIcon,
+    title: 'Everyday accounts',
+    desc: 'Open checking and savings designed for quick visibility, clear activity, and secure access from anywhere.',
+    metric: '24/7',
   },
   {
-    title: 'Secure Banking',
-    desc: 'Enterprise-grade encryption, multi-factor authentication, and continuous fraud protection.',
-    icon: SecureBankingIcon,
+    title: 'Protected movement',
+    desc: 'Send internal transfers, ACH, and wires with layered verification and continuous risk monitoring.',
+    metric: 'MFA',
   },
   {
-    title: '24/7 Support',
-    desc: 'Dedicated support team available round-the-clock to help with any questions or concerns.',
-    icon: SupportIcon,
+    title: 'Human support',
+    desc: 'Get help with onboarding, account questions, and service needs from a team focused on trust.',
+    metric: 'Care',
   },
 ];
 
-const securityFeatures = [
-  {
-    icon: ShieldIcon,
-    title: 'Multi-Layer Security',
-    desc: 'Advanced encryption and biometric authentication protect every transaction.',
-  },
-  {
-    icon: LockIcon,
-    title: 'Privacy First',
-    desc: 'Your data is never shared. Complete control over your personal information.',
-  },
-  {
-    icon: TrendIcon,
-    title: 'Real-Time Monitoring',
-    desc: 'AI-powered fraud detection monitors activities 24/7 for maximum protection.',
-  },
+const securityHighlights = [
+  'Multi-factor authentication safeguards account access.',
+  'Encrypted data handling protects sensitive personal information.',
+  'Real-time fraud signals help flag suspicious activity quickly.',
 ];
 
-const stats = [
-  { value: '2M+', label: 'Active Users' },
-  { value: '99.9%', label: 'Uptime' },
-  { value: '$150B+', label: 'Assets Managed' },
-];
-
-/* ─── Landing Page ──────────────────────────────────────────────────── */
-export function Landing() {
+function CheckIcon() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans overflow-hidden">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-          <BrandLogo variant="dark" />
-          <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
-            <a href="#home" className="px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-              Home
-            </a>
-            <a href="#features" className="px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-              Features
-            </a>
-            <a href="#security" className="px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-              Security
-            </a>
-            <a href="#stats" className="px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-              Why Us
-            </a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link
-              to="/login"
-              className="hidden sm:inline-flex px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm font-medium"
-            >
-              Sign In
-            </Link>
-            <Link
-              to="/register"
-              className="inline-flex px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors text-sm font-semibold shadow-md"
-            >
-              Get Started
-            </Link>
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M20 6L9 17l-5-5"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function PhonePreview() {
+  return (
+    <div className="relative mx-auto w-full max-w-sm">
+      <div className="absolute -left-8 top-12 h-28 w-28 rounded-full bg-gold-400/30 blur-3xl" />
+      <div className="absolute -right-10 bottom-10 h-36 w-36 rounded-full bg-pine-400/30 blur-3xl" />
+      <div className="relative rounded-[2.5rem] border border-white/20 bg-white/10 p-4 shadow-2xl shadow-slate-950/30 backdrop-blur">
+        <div className="rounded-[2rem] bg-slate-950/80 p-5 ring-1 ring-white/10">
+          <div className="mb-6 flex items-center justify-between text-sm text-slate-300">
+            <span>Pine dashboard</span>
+            <span className="rounded-full bg-pine-400/20 px-3 py-1 text-pine-100">Secure</span>
+          </div>
+          <div className="rounded-3xl bg-gradient-to-br from-pine-500 to-pine-800 p-5 text-white shadow-xl">
+            <p className="text-sm text-pine-100">Available balance</p>
+            <div className="mt-4 h-8 w-36 rounded-full bg-white/30" />
+            <div className="mt-5 flex gap-2">
+              <span className="h-2 w-16 rounded-full bg-white/40" />
+              <span className="h-2 w-10 rounded-full bg-white/25" />
+            </div>
+          </div>
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            {['Transfer', 'Deposit'].map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl bg-white/10 p-4 text-center text-sm font-bold text-white"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="mt-5 space-y-3">
+            {['Card purchase', 'Savings move', 'Wire review'].map((item, index) => (
+              <div key={item} className="flex items-center gap-3 rounded-2xl bg-white/5 p-3">
+                <span
+                  className={`h-9 w-9 rounded-full ${index === 1 ? 'bg-gold-400/80' : 'bg-pine-400/80'}`}
+                />
+                <div className="flex-1">
+                  <div className="h-2.5 w-28 rounded-full bg-white/25" />
+                  <div className="mt-2 h-2 w-16 rounded-full bg-white/10" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </header>
-      {/* Hero */}
-      <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob" />
-          <div className="absolute top-40 left-10 w-72 h-72 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000" />
-          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
+      </div>
+    </div>
+  );
+}
+
+export function Landing() {
+  return (
+    <div className="min-h-screen overflow-hidden bg-slate-950 text-pine-900">
+      <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/80 text-white backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+          <BrandLogo variant="dark" />
+          <nav className="hidden items-center gap-7 text-sm font-bold text-white/80 md:flex">
+            <a href="#services" className="transition hover:text-white">
+              Services
+            </a>
+            <a href="#security" className="transition hover:text-white">
+              Security
+            </a>
+            <a href="#support" className="transition hover:text-white">
+              Support
+            </a>
+            <Link to="/login" className="transition hover:text-white">
+              Login
+            </Link>
+          </nav>
+          <Link to="/register" className="btn-primary hidden px-5 py-2.5 sm:inline-flex">
+            Open account
+          </Link>
         </div>
-        <div className="mx-auto max-w-7xl relative">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-            <div className="flex flex-col justify-center">
-              <div className="mb-6">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold tracking-widest">
-                  NEXT-GEN BANKING
-                </span>
-              </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-tight">
-                Banking
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600">
-                  Reimagined
-                </span>
+      </header>
+
+      <main>
+        <section className="relative bg-[radial-gradient(circle_at_15%_10%,_rgba(224,185,74,0.20),_transparent_28%),radial-gradient(circle_at_80%_20%,_rgba(98,175,116,0.34),_transparent_30%),linear-gradient(135deg,_#06111d_0%,_#10243c_48%,_#123524_100%)] text-white">
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f7fbf8] to-transparent" />
+          <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-[1.05fr_0.95fr] md:py-28">
+            <div>
+              <span className="eyebrow">Modern digital banking</span>
+              <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                Banking redesigned around clarity, security, and control.
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
-                Experience modern banking with lightning-fast transactions, bank-grade security, and an interface designed for you.
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
+                Pine Truist Finance Bank brings everyday money management into a polished, protected
+                workspace—built for quick onboarding, confident transfers, and always-on account
+                access.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/register"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105"
-                >
-                  Open Account
-                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link to="/register" className="btn-primary px-8">
+                  Start your application
                 </Link>
-                <Link
-                  to="/login"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-gray-300 text-gray-900 font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all duration-300"
-                >
-                  Sign In
+                <Link to="/login" className="btn-ghost px-8">
+                  Secure login
                 </Link>
               </div>
-              <div className="mt-12 flex items-center gap-8">
-                {stats.map((stat) => (
-                  <div key={stat.label}>
-                    <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
-                    <p className="text-sm text-gray-600">{stat.label}</p>
+              <div className="mt-10 grid max-w-xl grid-cols-3 gap-3 text-center">
+                {['FDIC insured', 'Bank-grade controls', 'Real-time alerts'].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-3xl border border-white/10 bg-white/10 p-4 text-sm font-bold text-white/90 backdrop-blur"
+                  >
+                    {item}
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative flex justify-center">
-              <div className="relative w-full max-w-sm">
-                {/* Card illustration with no account balance, smaller action buttons */}
-                <svg
-                  viewBox="0 0 400 480"
-                  className="w-full drop-shadow-2xl"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#0ea5e9" />
-                      <stop offset="100%" stopColor="#06b6d4" />
-                    </linearGradient>
-                    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#10b981" />
-                      <stop offset="100%" stopColor="#06b6d4" />
-                    </linearGradient>
-                    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feDropShadow dx="0" dy="10" stdDeviation="20" floodOpacity="0.15" />
-                    </filter>
-                  </defs>
-                  {/* Main card */}
-                  <rect x="30" y="40" width="340" height="380" rx="28" fill="url(#cardGradient)" filter="url(#shadow)" />
-                  {/* Card gloss effect */}
-                  <rect x="30" y="40" width="340" height="190" rx="28" fill="white" opacity="0.1" />
-                  {/* Card chip */}
-                  <rect x="50" y="80" width="60" height="40" rx="4" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
-                  <circle cx="60" cy="90" r="3" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="70" cy="90" r="3" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="80" cy="90" r="3" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="60" cy="105" r="3" fill="rgba(255,255,255,0.5)" />
-                  <circle cx="70" cy="105" r="3" fill="rgba(255,255,255,0.5)" />
-                  {/* Cardholder name area */}
-                  <text x="50" y="150" fontSize="11" fill="rgba(255,255,255,0.6)" fontWeight="500">
-                    CARDHOLDER
-                  </text>
-                  <rect x="50" y="160" width="180" height="12" rx="4" fill="rgba(255,255,255,0.2)" />
-                  {/* Card number */}
-                  <text x="50" y="200" fontSize="28" fill="white" fontWeight="bold" letterSpacing="4">
-                    ••••  ••••  ••••  5829
-                  </text>
-                  {/* Expiry and CVV */}
-                  <g>
-                    <text x="50" y="245" fontSize="10" fill="rgba(255,255,255,0.7)" fontWeight="500">
-                      VALID THRU
-                    </text>
-                    <rect x="50" y="250" width="50" height="14" rx="3" fill="rgba(255,255,255,0.15)" />
-                    <text x="58" y="261" fontSize="11" fill="white" fontWeight="bold">
-                      12/26
-                    </text>
-                  </g>
-                  {/* Divider */}
-                  <rect x="50" y="275" width="300" height="2" fill="rgba(255,255,255,0.2)" />
-                  {/* Smaller action icons - e.g. mini buttons */}
-                  <g>
-                    <rect x="60" y="300" width="60" height="22" rx="6" fill="rgba(255,255,255,0.15)" />
-                    <text x="75" y="316" fontSize="11" fill="white" fontWeight="bold">
-                      Income
-                    </text>
-                  </g>
-                  <g>
-                    <rect x="145" y="300" width="60" height="22" rx="6" fill="rgba(255,255,255,0.15)" />
-                    <text x="160" y="316" fontSize="11" fill="white" fontWeight="bold">
-                      Spending
-                    </text>
-                  </g>
-                  <g>
-                    <rect x="230" y="300" width="60" height="22" rx="6" fill="rgba(255,255,255,0.15)" />
-                    <text x="245" y="316" fontSize="11" fill="white" fontWeight="bold">
-                      Savings
-                    </text>
-                  </g>
-                </svg>
+            <PhonePreview />
+          </div>
+        </section>
+
+        <section id="services" className="bg-[#f7fbf8] px-4 py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.24em] text-pine-600">
+                  Services
+                </p>
+                <h2 className="mt-3 max-w-2xl text-3xl font-black text-pine-900 md:text-4xl">
+                  A premium banking experience without the clutter.
+                </h2>
               </div>
+              <p className="max-w-md text-sm leading-6 text-slate-600">
+                The redesigned experience emphasizes clean account actions, readable content, and
+                trustworthy visual cues.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-      {/* Features */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold tracking-widest mb-4">
-              FEATURES
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Everything you need to thrive
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Powerful tools designed for modern banking, all in one secure platform.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {serviceCards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <div
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {serviceCards.map((card) => (
+                <article
                   key={card.title}
-                  className="group relative p-8 rounded-2xl border border-gray-200 bg-white hover:border-blue-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="card group transition duration-200 hover:-translate-y-1"
                 >
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative">
-                    <div className="mb-6 inline-block p-3 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100">
-                      <Icon className="w-8 h-8 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{card.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{card.desc}</p>
-                    <div className="mt-6 flex items-center text-blue-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Learn more
-                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
+                  <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-pine-900 text-xl font-black text-gold-400 shadow-lg shadow-pine-900/20">
+                    {card.metric}
                   </div>
-                </div>
-              );
-            })}
+                  <h3 className="text-xl font-black text-pine-900">{card.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{card.desc}</p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-      {/* Security */}
-      <section id="security" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        </section>
+
+        <section id="security" className="bg-white px-4 py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 rounded-[2rem] bg-pine-900 p-6 text-white shadow-2xl shadow-pine-900/20 md:grid-cols-[0.95fr_1.05fr] md:p-10">
             <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-xs font-semibold tracking-widest mb-4">
-                SECURITY FIRST
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Your security is our obsession
-              </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                We use enterprise-grade encryption, continuous monitoring, and industry-leading authentication to keep your money and data safe 24/7.
+              <p className="text-sm font-black uppercase tracking-[0.24em] text-gold-400">
+                Security
               </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <GreenCheckIcon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">FDIC Insured</p>
-                    <p className="text-gray-600 text-sm">Up to $250,000 per account</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <GreenCheckIcon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Bank-Grade Encryption</p>
-                    <p className="text-gray-600 text-sm">256-bit SSL security standard</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <GreenCheckIcon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Zero Liability</p>
-                    <p className="text-gray-600 text-sm">Protected against fraud and theft</p>
-                  </div>
-                </div>
-              </div>
+              <h2 className="mt-3 text-3xl font-black md:text-4xl">Confidence at every step.</h2>
+              <p className="mt-4 leading-7 text-pine-100">
+                From application through login and transfers, Pine Truist presents protection in a
+                clearer, calmer interface.
+              </p>
             </div>
-            <div className="grid gap-6">
-              {securityFeatures.map((feature) => {
-                const FeatureIcon = feature.icon;
-                return (
-                  <div
-                    key={feature.title}
-                    className="p-6 rounded-xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 hover:border-emerald-300 hover:shadow-md transition-all duration-300"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-emerald-50">
-                        <FeatureIcon className="w-6 h-6 text-emerald-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-gray-900 mb-1">{feature.title}</h3>
-                        <p className="text-sm text-gray-600">{feature.desc}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="grid gap-3">
+              {securityHighlights.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-3 rounded-3xl border border-white/10 bg-white/10 p-4 text-sm text-pine-50"
+                >
+                  <span className="mt-0.5 grid h-8 w-8 flex-none place-items-center rounded-full bg-pine-400/20 text-pine-100">
+                    <CheckIcon />
+                  </span>
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-      {/* Stats */}
-      <section id="stats" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-cyan-600">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Trusted by millions worldwide
+        </section>
+
+        <section id="support" className="bg-[#f7fbf8] px-4 py-20">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-pine-600">
+              Ready when you are
+            </p>
+            <h2 className="mt-3 text-3xl font-black text-pine-900 md:text-4xl">
+              Open an account or return to your dashboard.
             </h2>
-            <p className="text-xl text-blue-100">Join our growing community of smart savers</p>
+            <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-600">
+              A refined landing, login, and registration flow now guides customers with stronger
+              hierarchy, softer surfaces, and clearer calls to action.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link to="/register" className="btn-primary px-8">
+                Open an account
+              </Link>
+              <Link to="/login" className="btn-secondary px-8">
+                Login
+              </Link>
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <p className="text-5xl md:text-6xl font-bold text-white mb-2">{stat.value}</p>
-                <p className="text-lg text-blue-100">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-16 text-center">
-            <Link
-              to="/register"
-              className="inline-flex items-center px-8 py-4 rounded-xl bg-white text-blue-600 font-bold hover:bg-blue-50 transition-all duration-300 shadow-lg"
-            >
-              Start Your Journey Today
-              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
+        </section>
+      </main>
+
+      <footer className="bg-slate-950 px-4 py-10 text-sm text-slate-400">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <BrandLogo variant="dark" />
+          <div className="flex flex-wrap gap-5">
+            <a href="#security" className="hover:text-white">
+              Privacy Policy
+            </a>
+            <a href="#support" className="hover:text-white">
+              Terms &amp; Conditions
+            </a>
+            <a href="#support" className="hover:text-white">
+              Contact
+            </a>
           </div>
         </div>
-      </section>
-      {/* CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Ready to bank better?
-          </h2>
-          <p className="text-xl text-gray-600 mb-10">
-            Join thousands of customers who've switched to smarter banking.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/register"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
-            >
-              Create Free Account
-            </Link>
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-gray-300 text-gray-900 font-bold hover:border-gray-400 transition-all duration-300"
-            >
-              Sign In
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* Footer (no social section) */}
-      <footer className="bg-gray-900 text-gray-400 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            <div>
-              <h3 className="font-bold text-white mb-4">Product</h3>
-              <ul className="space-y-3">
-                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#security" className="hover:text-white transition-colors">Security</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Mobile App</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-white mb-4">Company</h3>
-              <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-white mb-4">Legal</h3>
-              <ul className="space-y-3">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookies</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">License</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-8">
-            <div className="flex flex-col md:flex-row items-center justify-between">
-              <p className="text-sm text-gray-500">
-                © {new Date().getFullYear()} Pine Truist Finance Bank. All rights reserved.
-              </p>
-              <div className="flex items-center gap-6 mt-4 md:mt-0 text-sm">
-                <span className="text-gray-500">Secure Banking Since 2020</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p className="mx-auto mt-6 max-w-6xl text-xs text-slate-500">
+          © {new Date().getFullYear()} Pine Truist Finance Bank. All rights reserved.
+        </p>
       </footer>
     </div>
   );
